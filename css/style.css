@@ -1,0 +1,294 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* ===== TELA DO CELULAR ===== */
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Arial Rounded MT Bold", system-ui, sans-serif;
+  user-select: none;
+}
+
+body {
+  background: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Arial Rounded MT Bold", system-ui, sans-serif;
+  overflow: hidden;
+}
+
+
+.phone {
+  width: 390px;
+  height: 780px;
+  background: #f7f7f7;
+  border-radius: 32px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  padding: 20px;
+  overflow: hidden; /* CRÍTICO */
+  position: relative;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.topo {
+  position: relative;
+  height: 200px; /* altura fixa */
+}
+
+/* ===== MASCOTE ===== */
+.mascot {
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 130px;
+}
+
+
+/* ===== CARD DA PALAVRA ===== */
+#card-palavra {
+  width: 100%;
+  height: 150px;
+  background: #ffffff;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  transition: background-color 0.25s ease;
+}
+
+.resultado {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #ffecec;
+  color: #b00020;
+  border-radius: 14px;
+  font-size: 16px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.resultado.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===== SÍLABAS ===== */
+#texto {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.silaba {
+  width: 78px;
+  height: 62px;
+  background: #ffffff;
+  border-radius: 18px;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.mais {
+  font-size: 26px;
+  color: #9ca3af;
+}
+
+.mic{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* ===== BOTÃO MICROFONE ===== */
+.mic-btn {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(180deg, #96ff38, #43a600); /* verde */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.15s ease, background 0.25s ease;
+}
+
+
+.mic-btn:active {
+  transform: scale(0.95);
+}
+
+.mic-btn img {
+  width: 60px;
+  height: 80px;
+  filter: brightness(0) invert(1);
+}
+
+/* ===== MICROFONE ATIVO (OUVINDO) ===== */
+.mic-btn.ativo {
+  background: linear-gradient(180deg, #ff4d4d, #c70000); /* vermelho */
+  box-shadow:
+    0 0 0 16px rgba(255, 77, 77, 0.4),
+    0 12px 30px rgba(0,0,0,0.35);
+}
+
+
+.mic-btn.ativo img {
+  content: url("/assets/img/sound.png");
+}
+
+
+/* ===== FEEDBACK DE ACERTO / ERRO NO CARD ===== */
+
+#card-palavra.acerto {
+  background: #ecfdf3; /* verde bem suave */
+  box-shadow: 0 0 0 4px rgba(88, 204, 2, 0.35);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+#card-palavra.erro {
+  background: #fef2f2; /* vermelho bem suave */
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.35);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.mascot.feliz {
+  animation: bounce 0.6s ease;
+}
+
+.mascot.triste {
+  animation: bounce 0.6s ease;
+}
+
+.mascot-congrats {
+  transform: translateX(-50%) scale(1.15);
+  animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateX(-50%) scale(1.1); }
+  to   { transform: translateX(-50%) scale(1.2); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+.mascot.destaque {
+  animation: megaBounce 1s infinite;
+  filter: drop-shadow(0 0 14px rgba(88, 204, 2, 0.6));
+  transform: scale(1.2);
+}
+
+@keyframes megaBounce {
+  0% { transform: scale(1.2) translateY(0); }
+  50% { transform: scale(1.25) translateY(-10px); }
+  100% { transform: scale(1.2) translateY(0); }
+}
+
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  opacity: 0.9;
+  animation: fall 1.6s linear forwards;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+.parent-report {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 45px 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  margin-top: 5px;
+  color: #2d2d2d;
+  font-size: 12px;
+}
+
+.parent-report h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.report-item {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.report-item.destaque {
+  margin-top: 0px;
+  font-size: 18px;
+  color: #232521;
+}
+
+#btn-instalar {
+  position: fixed;
+  top: 5px;
+  right: 0px;
+  z-index: 999;
+  padding: 14px 18px;
+  font-size: 16px;
+  border-radius: 12px 0 0 12px;
+  border: none;
+  background: #58cc02;
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
