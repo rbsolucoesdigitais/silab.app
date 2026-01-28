@@ -501,7 +501,7 @@ function iniciarMicrofone() {
     microfoneAtivo = true;
 
     botaoEl.classList.add("ativo");
-    micImg.src = "../assets/img/sound.png";
+    micImg.src = "./assets/img/sound.png";
 
     recognition.start();
   } catch (e) {
@@ -512,7 +512,7 @@ function iniciarMicrofone() {
 
 function pararMicrofone() {
   botaoEl.classList.remove("ativo");
-  micImg.src = "../assets/img/phone.png";
+  micImg.src = "./assets/img/phone.png";
 }
 
 
@@ -562,4 +562,5 @@ document.getElementById("btn-instalar")?.addEventListener("click", async () => {
 window.addEventListener("appinstalled", () => {
   document.getElementById("btn-instalar")?.classList.add("hidden");
 });
+
 
